@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2">
+    <h3>Buying tickets for "{{model.movie.name}}"</h3>
+
+    <ul>
+      <li>
+        <b>Hour:</b>
+        {{if model.startDate (moment-format model.startDate 'LT') 'startDate not defined correctly'}}&nbsp;
+        -&nbsp;
+        {{if model.endDate (moment-format model.endDate 'LT') 'endDate not defined correctly'}}
+      </li>
+      <li>
+        <b>Room:</b>&nbsp;
+        {{if model.room.name model.room.name 'room relation not defined correctly'}}&nbsp;
+      </li>
+    </ul>
+
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label>Amount:</label>
+        <div class="input-group">
+          {{input type="number" value=ticketsAmoun class="form-control" min=0 max=5}}
+          <span class="input-group-addon">tickets</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-6">
+      &nbsp;<br/>
+      <button type="button" class="btn btn-block btn-success" {{action 'buy' ticketsAmoun}}>Pay!</button>
+    </div>
+  </div>
+</div>

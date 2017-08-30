@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2">
+    <h2>{{model.name}}</h2>
+
+    <p>{{if model.synopsis model.synopsis 'Synopsis not defined correctly'}}</p>
+
+
+    <h3>Available</h3>
+    <ul>
+      {{#each model.schedules as |schedule|}}
+        <li>
+          <p>
+            {{if schedule.room.name schedule.room.name 'room relation not defined correctly'}}:&nbsp;
+            {{if schedule.startDate (moment-format schedule.startDate 'LT') 'startDate not defined correctly'}}&nbsp;
+            -&nbsp;
+            {{if schedule.endDate (moment-format schedule.endDate 'LT') 'endDate not defined correctly'}}
+
+            {{#link-to 'reservation' schedule}}
+              Buy tickets
+            {{/link-to}}
+          </p>
+        </li>
+      {{else}}
+        <li>Relation to 'schedule' no defined correctly</li>
+      {{/each}}
+    </ul>
+
+  </div>
+
+</div>
